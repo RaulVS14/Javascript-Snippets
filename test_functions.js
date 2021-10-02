@@ -1,4 +1,4 @@
-function test(func, expected, ...args) {
+export default function test(func, expected, ...args) {
     console.log(func(...args) === expected);
     let result = func(...args);
     let enclosure_str = '\n==================================\n';
