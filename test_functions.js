@@ -1,8 +1,11 @@
-export default function test(func, expected, ...args) {
+function test(func, expected, ...args) {
     console.log(func(...args) === expected);
-    let msg_str = ` ${func.name} \n with${args.map((el, index) => ` arg${index + 1}: ${el}`)} \n -`;
     let result = func(...args);
     let enclosure_str = '\n==================================\n';
-    let result_message = (result === expected) ? `${enclosure_str}Test passed: ${msg_str} ${result} === ${expected}${enclosure_str}` : `${enclosure_str}Test failed: ${msg_str} ${result} !== ${expected}${enclosure_str}`;
-    console.log(result_message);
+    let check = (result === expected);
+    let status_str = `Testing function '${func.name}' ${check ? 'passed' : 'failed'}:`;
+    let args_str = ` \n === ARGS ===\n${[...args.map((el, index) => ` ${index + 1}: ${el}`)].join("\n")} \n`;
+    let result_str = `=== RESULT ===\n expected: ${result}\n got ${expected}`;
+    let response_str = `${enclosure_str} ${status_str} ${args_str} ${result_str}${enclosure_str}`;
+    console.log(response_str);
 }
